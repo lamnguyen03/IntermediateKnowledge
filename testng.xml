@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="lamnguyen">
+        <classes>
+            <class name="lamnguyenthanh.testcases.SignUpTest" />
+        </classes>
+    </test>
+    <test name="LoginTest">
+        <classes>
+            <class name="lamnguyenthanh.testcases.LoginTest" />
+        </classes>
+    </test>
+    <test name="E2EMakeAnOderShippingAddressTest">
+        <classes>
+            <class name="lamnguyenthanh.testcases.E2EMakeAnOderShippingAddressTest" />
+        </classes>
+    </test>
+</suite>

@@ -61,7 +61,6 @@ public class BaseSetUp {
         driver.manage().window().maximize();
         driver.navigate().to(URL);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         return driver;
     }
 
@@ -72,7 +71,6 @@ public class BaseSetUp {
         driver.manage().window().maximize();
         driver.navigate().to(URL);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         return driver;
     }
     private static WebDriver initBrowserStack(String URL) {
@@ -105,7 +103,6 @@ public class BaseSetUp {
             driver = new RemoteWebDriver(new URL(url), caps);
             driver.manage().window().maximize();
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
             driver.navigate().to(URL);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -117,7 +114,7 @@ public class BaseSetUp {
     // Chạy hàm initializeTestBaseSetup trước hết khi class này được gọi
     @Parameters({"browserType", "webURL"})
     @BeforeClass
-    public void initializeTestBaseSetup(@Optional("chrome") String browserType, @Optional("https://magento.softwaretestingboard.com/") String webURL) {
+    public void initializeTestBaseSetup(@Optional("browserstack") String browserType, @Optional("https://magento.softwaretestingboard.com/") String webURL) {
         try {
             // Khởi tạo driver và browser
             setDriver(browserType, webURL);
@@ -133,8 +130,12 @@ public class BaseSetUp {
         Thread.sleep(1000);
         driver.quit();
     }
-    public void waitForElementVisible(WebElement element, Duration timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
+//    public void waitToBeClickAble(WebElement element) {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        wait.until(ExpectedConditions.elementToBeClickable(element));
+//    }
+//    public void waitToBeAvailable(WebElement element) {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        wait.until(ExpectedConditions.visibilityOf(element));
+//    }
 }

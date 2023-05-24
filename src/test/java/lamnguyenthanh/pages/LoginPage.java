@@ -4,6 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPage {
     private WebDriver driver;
@@ -26,7 +31,6 @@ public class LoginPage {
     private WebElement failMessage;
     @FindBy(className = "logged-in")
     private WebElement successMessage;
-
     public WebElement getsuccessLocator() {
         return successMessage;
     }
@@ -34,9 +38,8 @@ public class LoginPage {
         logInLink.click();
         this.email.sendKeys(email);
         passWord.sendKeys(password);
+        waitUtillLogInBtnClicked(logInBtn);
         logInBtn.click();
-
-
     }
 
     public boolean isLogInSuccess() {
@@ -46,4 +49,15 @@ public class LoginPage {
     public boolean isLogInFail() {
         return failMessage.isDisplayed();
     }
+
+    public void waitUtillLogInBtnClicked(WebElement element){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+//    public void waitForElementVisible(WebElement element, Duration timeout) {
+//        WebDriverWait wait = new WebDriverWait(driver, timeout);
+//        wait.until(ExpectedConditions.visibilityOf(element));
+//    }
+
 }

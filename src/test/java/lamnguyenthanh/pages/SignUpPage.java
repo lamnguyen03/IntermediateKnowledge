@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class SignUpPage {
     private WebDriver driver;
@@ -42,10 +44,11 @@ public class SignUpPage {
     @FindBy(xpath = "//div[@class= 'panel header']//button[@type='button' and @class='action switch']")
     private WebElement accountDropdown;
 
-    @FindBy(xpath = "//header/div[1]/div[1]/ul[1]/li[2]/div[1]/ul[1]/li[3]/a[1]")
+    @FindBy(xpath = "//div[@class='panel header']//div[@class='customer-menu']//li[@class='authorization-link']")
     private WebElement signOutLink;
 
     public void clickCreateAccountLink() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         createAccountLink.click();
     }
 
@@ -78,8 +81,8 @@ public class SignUpPage {
         signOutLink.click();
     }
 
-    public void assertRegistrationSuccess() {
-        Assert.assertTrue(successMessage.isDisplayed(), "Registration success message is not displayed.");
+    public boolean assertRegistrationSuccess() {
+        return successMessage.isDisplayed();
     }
 }
 

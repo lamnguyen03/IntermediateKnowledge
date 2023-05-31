@@ -1,20 +1,18 @@
-package lamnguyenthanh.testcases;
+package lamnguyenthanh.scenario;
 
-import io.cucumber.java.hu.De;
 import lamnguyenthanh.commons.BaseSetUp;
-import lamnguyenthanh.pages.DetailProductPage;
-import lamnguyenthanh.pages.LoginPage;
-import lamnguyenthanh.pages.SignUpPage;
+import lamnguyenthanh.pagesobject.DetailProductPage;
+import lamnguyenthanh.pagesobject.LoginPage;
+import lamnguyenthanh.pagesobject.SignUpPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 import static org.testng.AssertJUnit.assertTrue;
 
-public class LoginTest extends BaseSetUp {
+public class LoginFailWithInvalidDataTest extends BaseSetUp {
     private WebDriver driver;
     private LoginPage loginPage;
     private SignUpPage signUpPage;
@@ -29,17 +27,17 @@ public class LoginTest extends BaseSetUp {
         detailProductPage = new DetailProductPage(driver);
     }
 
-    @Test
-    public void testValidLogIn() {
-        loginPage.LogIn("lamlam112.nguyenthanh@gmail.com","Thanhlam26@");
-        //Verify success registration
-        assertTrue(loginPage.isLogInSuccess());
-//        signUpPage.logOut();
-    }
+    @DataProvider(name = "loginData")
+    public Object[][] getLoginData() {
+        return new Object[][]{
+                {"nguyenthanhgmail@", "Thanhlam26@"},
+                {" ", " "},
 
-    @Test
-    public void testInValidLogIn() {
-        loginPage.LogIn("lam123.nguyenthanhgmail.com","Thanhlam26@");
+        };
+    }
+    @Test(dataProvider = "loginData")
+    public void testValidLogIn(String email, String password) {
+        loginPage.LogIn(email, password);
         //Verify success registration
         assertTrue(loginPage.isLogInFail());
     }

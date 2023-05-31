@@ -114,7 +114,7 @@ public class BaseSetUp {
     // Chạy hàm initializeTestBaseSetup trước hết khi class này được gọi
     @Parameters({"browserType", "webURL"})
     @BeforeClass
-    public void initializeTestBaseSetup(@Optional("browserstack") String browserType, @Optional("https://magento.softwaretestingboard.com/") String webURL) {
+    public void initializeTestBaseSetup(@Optional("chrome") String browserType, @Optional("https://magento.softwaretestingboard.com/") String webURL) {
         try {
             // Khởi tạo driver và browser
             setDriver(browserType, webURL);

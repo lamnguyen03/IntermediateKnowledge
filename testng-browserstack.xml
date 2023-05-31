@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
+    <parameter name="browserType" value="browserstack"/>
+    <parameter name="webURL" value="https://magento.softwaretestingboard.com/"/>
     <test name="SingUpTest">
         <classes>
             <class name="lamnguyenthanh.scenario.SignUpSuccessWithValidDataTest" />
@@ -21,4 +23,5 @@
             <class name="lamnguyenthanh.scenario.E2EMakeAnOderShippingAddressTest" />
         </classes>
     </test>
+
 </suite>

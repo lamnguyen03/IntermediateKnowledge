@@ -1,4 +1,4 @@
-package lamnguyenthanh.pages;
+package lamnguyenthanh.pagesobject;
 
 import lamnguyenthanh.commons.BaseSetUp;
 import org.openqa.selenium.JavascriptExecutor;

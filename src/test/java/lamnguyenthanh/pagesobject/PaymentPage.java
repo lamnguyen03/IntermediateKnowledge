@@ -1,7 +1,6 @@
-package lamnguyenthanh.pages;
+package lamnguyenthanh.pagesobject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -29,8 +28,7 @@ public class PaymentPage {
     public void oderProcess() {
         Actions actions = new Actions(driver);
         actions.moveToElement(placeOrderBtn).click().perform();
-//        JavascriptExecutor executor = (JavascriptExecutor) driver;
-//        executor.executeScript("arguments[0].click();", placeOrderBtn);
+
     }
 
     public boolean isAtPaymentPage() {
